@@ -93,8 +93,9 @@ static BOOL protocol_containsSelector(Protocol *protocol, SEL selector)
                 self.detailTextLabel.text = @"";
                 UIImageView *thumbsView = [[UIImageView alloc] initWithImage: thumbs];
                 CGFloat width = (self.frame.size.height * thumbs.size.width) / thumbs.size.height;
-                thumbsView.frame   = CGRectMake(0, 0, width, self.frame.size.height);
-                thumbsView.bounds = CGRectInset(thumbsView.frame, 12.0f, 15.0f);
+                thumbsView.frame   = CGRectMake(0, 0, 50, 50);
+                int margin = (self.frame.size.height / 2) - 25;
+                thumbsView.bounds = CGRectInset(thumbsView.frame, margin, margin);
                 self.accessoryView = thumbsView;
             }else{
                 self.accessoryView = nil;
