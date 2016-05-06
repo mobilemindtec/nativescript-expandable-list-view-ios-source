@@ -92,9 +92,9 @@ static BOOL protocol_containsSelector(Protocol *protocol, SEL selector)
             if(self.expansionStyle == UIExpansionHeaderStyleExpanded || self.expansionStyle == UIExpansionHeaderStyleCollapsed){
                 self.detailTextLabel.text = @"";
                 UIImageView *thumbsView = [[UIImageView alloc] initWithImage: thumbs];
-                CGFloat width = (self.frame.size.height * thumbs.size.width) / thumbs.size.height;
-                thumbsView.frame   = CGRectMake(0, 0, 50, 50);
-                int margin = (self.frame.size.height / 2) - 25;
+                thumbs.contentMode = UIViewContentModeScaleAspectFit;                
+                thumbsView.frame   = CGRectMake(0, 0, 60, 60);
+                int margin = (self.frame.size.height / 2) - 30;
                 thumbsView.bounds = CGRectInset(thumbsView.frame, margin, margin);
                 self.accessoryView = thumbsView;
             }else{
