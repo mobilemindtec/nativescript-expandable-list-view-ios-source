@@ -49,36 +49,34 @@ static BOOL protocol_containsSelector(Protocol *protocol, SEL selector)
 
 - (void)_updateDetailTextLabel
 {   
-
-    /*
-    id view = [self superview];
-
-    while (view && [view isKindOfClass:[UITableView class]] == NO) {
-        view = [view superview]; 
-    }
-
-    UITableView *tableView = (UITableView *)view;
-
-    NSIndexPath *indexPath = [tableView indexPathForCell: self];
-
-    if(indexPath.row == 0) // is child!
-        return;
-    */
-
     if (self.isLoading) {
         self.detailTextLabel.text = @"Loading data";
     } else {
         
-        UIImage *thumbs = nil;
+        int margin = (self.frame.size.height / 2) - 30;
         NSBundle *bundle = [NSBundle bundleForClass: NSExpandableTableView.self];
         
-        if(self.expansionStyle == UIExpansionHeaderStyleExpanded){
-            thumbs = [UIImage imageNamed: @"expandable_list_view_arrow_up" inBundle: bundle compatibleWithTraitCollection: nil];
-        }else if(self.expansionStyle == UIExpansionHeaderStyleCollapsed){            
-            thumbs = [UIImage imageNamed: @"expandable_list_view_arrow_down" inBundle: bundle compatibleWithTraitCollection: nil];
+        if(self.expansionStyle == UIExpansionHeaderStyleExpanded && thumbsViewArrowUp == nil){
+            
+            UIImage *thumbsArrowUp = [UIImage imageNamed: @"expandable_list_view_arrow_up" inBundle: bundle compatibleWithTraitCollection: nil];
+            thumbsArrowUp.contentMode = UIViewContentModeScaleAspectFit;    
+
+            thumbsViewArrowUp = [[UIImageView alloc] initWithImage: thumbsArrowUp];                        
+            thumbsViewArrowUp.frame   = CGRectMake(0, 0, 60, 60);            
+            thumbsViewArrowUp.bounds = CGRectInset(thumbsViewArrowUp.frame, margin, margin);
+
+        }else if(self.expansionStyle == UIExpansionHeaderStyleCollapsed && thumbsViewArrowDown == nil){            
+            
+            UIImage *thumbsArrowDown = [UIImage imageNamed: @"expandable_list_view_arrow_down" inBundle: bundle compatibleWithTraitCollection: nil];
+            thumbsArrowDown.contentMode = UIViewContentModeScaleAspectFit;    
+            
+            thumbsViewArrowDown = [[UIImageView alloc] initWithImage: thumbsArrowDown];                        
+            thumbsViewArrowDown.frame   = CGRectMake(0, 0, 60, 60);            
+            thumbsViewArrowDown.bounds = CGRectInset(thumbsViewArrowDown.frame, margin, margin);
+
         }
         
-        if(!thumbs){
+        if(!thumbsViewArrowUp || !thumbsViewArrowDown){
             switch (self.expansionStyle) {
                 case UIExpansionHeaderStyleExpanded:
                     self.detailTextLabel.text = @"Click to collapse";
@@ -90,14 +88,21 @@ static BOOL protocol_containsSelector(Protocol *protocol, SEL selector)
             self.accessoryView = nil;
         }else{
             if(self.expansionStyle == UIExpansionHeaderStyleExpanded || self.expansionStyle == UIExpansionHeaderStyleCollapsed){
-                self.detailTextLabel.text = @"";
-                UIImageView *thumbsView = [[UIImageView alloc] initWithImage: thumbs];
-                thumbs.contentMode = UIViewContentModeScaleAspectFit;                
-                thumbsView.frame   = CGRectMake(0, 0, 60, 60);
-                int margin = (self.frame.size.height / 2) - 30;
-                thumbsView.bounds = CGRectInset(thumbsView.frame, margin, margin);
-                self.accessoryView = thumbsView;
+                switch (self.expansionStyle) {
+                    case UIExpansionHeaderStyleExpanded:
+                        self.accessoryView = thumbsViewArrowUp;
+                        break;
+                    case UIExpansionHeaderStyleCollapsed:
+                        self.accessoryView = thumbsViewArrowDown;
+                        break;                
+                }
+
+                NSLog(@"change tumbs view ");
+
+                self.detailTextLabel.text = @"";     
+
             }else{
+                NSLog(@"remove tumbs view ");
                 self.accessoryView = nil;
             }
         }

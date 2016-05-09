@@ -100,7 +100,11 @@ typedef enum {
 
 @end
 
-@interface NSExpandableTableViewControllerHeaderCell : UITableViewCell <UIExpandingTableViewCell>
+@interface NSExpandableTableViewControllerHeaderCell : UITableViewCell <UIExpandingTableViewCell>{
+    UIViewImage *thumbsViewArrowUp;
+    UIViewImage *thumbsViewArrowDown;
+}
+
 
 @property (nonatomic, assign, getter = isLoading) BOOL loading;
 
