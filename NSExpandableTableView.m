@@ -59,18 +59,20 @@ static BOOL protocol_containsSelector(Protocol *protocol, SEL selector)
         if(self.expansionStyle == UIExpansionHeaderStyleExpanded && thumbsViewArrowUp == nil){
             
             UIImage *thumbsArrowUp = [UIImage imageNamed: @"expandable_list_view_arrow_up" inBundle: bundle compatibleWithTraitCollection: nil];
-            thumbsArrowUp.contentMode = UIViewContentModeScaleAspectFit;    
+            
 
             thumbsViewArrowUp = [[UIImageView alloc] initWithImage: thumbsArrowUp];                        
+            thumbsViewArrowUp.contentMode = UIViewContentModeScaleAspectFit;    
             thumbsViewArrowUp.frame   = CGRectMake(0, 0, 60, 60);            
             thumbsViewArrowUp.bounds = CGRectInset(thumbsViewArrowUp.frame, margin, margin);
 
         }else if(self.expansionStyle == UIExpansionHeaderStyleCollapsed && thumbsViewArrowDown == nil){            
             
             UIImage *thumbsArrowDown = [UIImage imageNamed: @"expandable_list_view_arrow_down" inBundle: bundle compatibleWithTraitCollection: nil];
-            thumbsArrowDown.contentMode = UIViewContentModeScaleAspectFit;    
+            
             
             thumbsViewArrowDown = [[UIImageView alloc] initWithImage: thumbsArrowDown];                        
+            thumbsViewArrowDown.contentMode = UIViewContentModeScaleAspectFit;    
             thumbsViewArrowDown.frame   = CGRectMake(0, 0, 60, 60);            
             thumbsViewArrowDown.bounds = CGRectInset(thumbsViewArrowDown.frame, margin, margin);
 
@@ -88,6 +90,7 @@ static BOOL protocol_containsSelector(Protocol *protocol, SEL selector)
             self.accessoryView = nil;
         }else{
             if(self.expansionStyle == UIExpansionHeaderStyleExpanded || self.expansionStyle == UIExpansionHeaderStyleCollapsed){
+
                 switch (self.expansionStyle) {
                     case UIExpansionHeaderStyleExpanded:
                         self.accessoryView = thumbsViewArrowUp;
