@@ -56,7 +56,7 @@ static BOOL protocol_containsSelector(Protocol *protocol, SEL selector)
         
         if(thumbsViewArrowUp == nil){
             
-            int margin = (self.frame.size.height / 2) - 30;
+            int margin = (self.frame.size.height / 2) - 15;
             NSBundle *bundle = [NSBundle bundleForClass: NSExpandableTableView.self];
 
             UIImage *thumbsArrowUp = [UIImage imageNamed: @"expandable_list_view_arrow_up" inBundle: bundle compatibleWithTraitCollection: nil];
@@ -64,7 +64,7 @@ static BOOL protocol_containsSelector(Protocol *protocol, SEL selector)
 
             thumbsViewArrowUp = [[UIImageView alloc] initWithImage: thumbsArrowUp];                        
             thumbsViewArrowUp.contentMode = UIViewContentModeScaleAspectFit;    
-            thumbsViewArrowUp.frame   = CGRectMake(0, 0, 60, 60);            
+            thumbsViewArrowUp.frame   = CGRectMake(0, 0, 30, 30);            
             thumbsViewArrowUp.bounds = CGRectInset(thumbsViewArrowUp.frame, margin, margin);
 
             
@@ -73,7 +73,7 @@ static BOOL protocol_containsSelector(Protocol *protocol, SEL selector)
             
             thumbsViewArrowDown = [[UIImageView alloc] initWithImage: thumbsArrowDown];                        
             thumbsViewArrowDown.contentMode = UIViewContentModeScaleAspectFit;    
-            thumbsViewArrowDown.frame   = CGRectMake(0, 0, 60, 60);            
+            thumbsViewArrowDown.frame   = CGRectMake(0, 0, 30, 30);            
             thumbsViewArrowDown.bounds = CGRectInset(thumbsViewArrowDown.frame, margin, margin);
 
         }
