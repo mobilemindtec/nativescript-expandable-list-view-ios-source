@@ -53,11 +53,12 @@ static BOOL protocol_containsSelector(Protocol *protocol, SEL selector)
         self.detailTextLabel.text = @"Loading data";
     } else {
         
-        int margin = (self.frame.size.height / 2) - 30;
-        NSBundle *bundle = [NSBundle bundleForClass: NSExpandableTableView.self];
         
-        if(self.expansionStyle == UIExpansionHeaderStyleExpanded && thumbsViewArrowUp == nil){
+        if(!thumbsViewArrowUp == nil){
             
+            int margin = (self.frame.size.height / 2) - 30;
+            NSBundle *bundle = [NSBundle bundleForClass: NSExpandableTableView.self];
+
             UIImage *thumbsArrowUp = [UIImage imageNamed: @"expandable_list_view_arrow_up" inBundle: bundle compatibleWithTraitCollection: nil];
             
 
@@ -66,7 +67,6 @@ static BOOL protocol_containsSelector(Protocol *protocol, SEL selector)
             thumbsViewArrowUp.frame   = CGRectMake(0, 0, 60, 60);            
             thumbsViewArrowUp.bounds = CGRectInset(thumbsViewArrowUp.frame, margin, margin);
 
-        }else if(self.expansionStyle == UIExpansionHeaderStyleCollapsed && thumbsViewArrowDown == nil){            
             
             UIImage *thumbsArrowDown = [UIImage imageNamed: @"expandable_list_view_arrow_down" inBundle: bundle compatibleWithTraitCollection: nil];
             
@@ -78,7 +78,7 @@ static BOOL protocol_containsSelector(Protocol *protocol, SEL selector)
 
         }
         
-        if(!thumbsViewArrowUp || !thumbsViewArrowDown){
+        if(!thumbsViewArrowUp){
             switch (self.expansionStyle) {
                 case UIExpansionHeaderStyleExpanded:
                     self.detailTextLabel.text = @"Click to collapse";
@@ -89,16 +89,14 @@ static BOOL protocol_containsSelector(Protocol *protocol, SEL selector)
             }
             self.accessoryView = nil;
         }else{
-            if(self.expansionStyle == UIExpansionHeaderStyleExpanded || self.expansionStyle == UIExpansionHeaderStyleCollapsed){
 
-                switch (self.expansionStyle) {
-                    case UIExpansionHeaderStyleExpanded:
-                        self.accessoryView = thumbsViewArrowUp;
-                        break;
-                    case UIExpansionHeaderStyleCollapsed:
-                        self.accessoryView = thumbsViewArrowDown;
-                        break;                
-                }
+            switch (self.expansionStyle) {
+                case UIExpansionHeaderStyleExpanded:
+                    self.accessoryView = thumbsViewArrowUp;
+                    break;
+                case UIExpansionHeaderStyleCollapsed:
+                    self.accessoryView = thumbsViewArrowDown;
+                    break;                
 
                 NSLog(@"change tumbs view ");
 
