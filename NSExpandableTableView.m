@@ -54,7 +54,7 @@ static BOOL protocol_containsSelector(Protocol *protocol, SEL selector)
     } else {
         
         
-        if(!thumbsViewArrowUp == nil){
+        if(!thumbsViewArrowUp){
             
             int margin = (self.frame.size.height / 2) - 30;
             NSBundle *bundle = [NSBundle bundleForClass: NSExpandableTableView.self];
