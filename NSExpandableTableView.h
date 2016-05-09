@@ -101,8 +101,8 @@ typedef enum {
 @end
 
 @interface NSExpandableTableViewControllerHeaderCell : UITableViewCell <UIExpandingTableViewCell>{
-    UIViewImage *thumbsViewArrowUp;
-    UIViewImage *thumbsViewArrowDown;
+    UIImageView *thumbsViewArrowUp;
+    UIImageView *thumbsViewArrowDown;
 }
 
 
