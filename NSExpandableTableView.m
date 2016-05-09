@@ -64,7 +64,7 @@ static BOOL protocol_containsSelector(Protocol *protocol, SEL selector)
 
             thumbsViewArrowUp = [[UIImageView alloc] initWithImage: thumbsArrowUp];                        
             thumbsViewArrowUp.contentMode = UIViewContentModeScaleAspectFit;    
-            thumbsViewArrowUp.frame   = CGRectMake(0, 0, 30, 30);            
+            thumbsViewArrowUp.frame   = CGRectMake(0, 0, 40, 30);            
             thumbsViewArrowUp.bounds = CGRectInset(thumbsViewArrowUp.frame, margin, margin);
 
             
@@ -73,7 +73,7 @@ static BOOL protocol_containsSelector(Protocol *protocol, SEL selector)
             
             thumbsViewArrowDown = [[UIImageView alloc] initWithImage: thumbsArrowDown];                        
             thumbsViewArrowDown.contentMode = UIViewContentModeScaleAspectFit;    
-            thumbsViewArrowDown.frame   = CGRectMake(0, 0, 30, 30);            
+            thumbsViewArrowDown.frame   = CGRectMake(0, 0, 40, 30);            
             thumbsViewArrowDown.bounds = CGRectInset(thumbsViewArrowDown.frame, margin, margin);
 
         }
@@ -97,8 +97,7 @@ static BOOL protocol_containsSelector(Protocol *protocol, SEL selector)
                 case UIExpansionHeaderStyleCollapsed:
                     self.accessoryView = thumbsViewArrowDown;
                     break;                
-            }
-            NSLog(@"change tumbs view ");
+            }            
             self.detailTextLabel.text = @"";     
         }
 
