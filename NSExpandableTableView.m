@@ -54,7 +54,7 @@ static BOOL protocol_containsSelector(Protocol *protocol, SEL selector)
     } else {
         
         
-        if(!thumbsViewArrowUp){
+        if(thumbsViewArrowUp == nil){
             
             int margin = (self.frame.size.height / 2) - 30;
             NSBundle *bundle = [NSBundle bundleForClass: NSExpandableTableView.self];
@@ -78,7 +78,7 @@ static BOOL protocol_containsSelector(Protocol *protocol, SEL selector)
 
         }
         
-        if(!thumbsViewArrowUp){
+        if(thumbsViewArrowUp == nil){
             switch (self.expansionStyle) {
                 case UIExpansionHeaderStyleExpanded:
                     self.detailTextLabel.text = @"Click to collapse";
@@ -97,15 +97,9 @@ static BOOL protocol_containsSelector(Protocol *protocol, SEL selector)
                 case UIExpansionHeaderStyleCollapsed:
                     self.accessoryView = thumbsViewArrowDown;
                     break;                
-
-                NSLog(@"change tumbs view ");
-
-                self.detailTextLabel.text = @"";     
-
-            }else{
-                NSLog(@"remove tumbs view ");
-                self.accessoryView = nil;
             }
+            NSLog(@"change tumbs view ");
+            self.detailTextLabel.text = @"";     
         }
 
     }    
