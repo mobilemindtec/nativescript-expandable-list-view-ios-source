@@ -1,8 +1,8 @@
 //
 //  NSExpandableTableView.m
-//  
 //
-//  
+//
+//
 
 #import "NSExpandableTableView.h"
 #import <QuartzCore/QuartzCore.h>
@@ -42,42 +42,42 @@ static BOOL protocol_containsSelector(Protocol *protocol, SEL selector)
 {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         [self _updateDetailTextLabel];
-        //self.backgroundColor = [UIColor yellowColor];
+        self.backgroundColor = [UIColor clearColor];
     }
     return self;
 }
 
 - (void)_updateDetailTextLabel
-{   
+{
     if (self.isLoading) {
         self.detailTextLabel.text = @"Loading data";
     } else {
-        
-        
+
+
         if(thumbsViewArrowUp == nil){
-            
+
             int margin = (self.frame.size.height / 2) - 15;
             NSBundle *bundle = [NSBundle bundleForClass: NSExpandableTableView.self];
 
             UIImage *thumbsArrowUp = [UIImage imageNamed: @"expandable_list_view_arrow_up" inBundle: bundle compatibleWithTraitCollection: nil];
-            
 
-            thumbsViewArrowUp = [[UIImageView alloc] initWithImage: thumbsArrowUp];                        
-            thumbsViewArrowUp.contentMode = UIViewContentModeScaleAspectFit;    
-            thumbsViewArrowUp.frame   = CGRectMake(0, 0, 40, 30);            
+
+            thumbsViewArrowUp = [[UIImageView alloc] initWithImage: thumbsArrowUp];
+            thumbsViewArrowUp.contentMode = UIViewContentModeScaleAspectFit;
+            thumbsViewArrowUp.frame   = CGRectMake(0, 0, 40, 30);
             thumbsViewArrowUp.bounds = CGRectInset(thumbsViewArrowUp.frame, margin, margin);
 
-            
+
             UIImage *thumbsArrowDown = [UIImage imageNamed: @"expandable_list_view_arrow_down" inBundle: bundle compatibleWithTraitCollection: nil];
-            
-            
-            thumbsViewArrowDown = [[UIImageView alloc] initWithImage: thumbsArrowDown];                        
-            thumbsViewArrowDown.contentMode = UIViewContentModeScaleAspectFit;    
-            thumbsViewArrowDown.frame   = CGRectMake(0, 0, 40, 30);            
+
+
+            thumbsViewArrowDown = [[UIImageView alloc] initWithImage: thumbsArrowDown];
+            thumbsViewArrowDown.contentMode = UIViewContentModeScaleAspectFit;
+            thumbsViewArrowDown.frame   = CGRectMake(0, 0, 40, 30);
             thumbsViewArrowDown.bounds = CGRectInset(thumbsViewArrowDown.frame, margin, margin);
 
         }
-        
+
         if(thumbsViewArrowUp == nil){
             switch (self.expansionStyle) {
                 case UIExpansionHeaderStyleExpanded:
@@ -96,12 +96,12 @@ static BOOL protocol_containsSelector(Protocol *protocol, SEL selector)
                     break;
                 case UIExpansionHeaderStyleCollapsed:
                     self.accessoryView = thumbsViewArrowDown;
-                    break;                
-            }            
-            self.detailTextLabel.text = @"";     
+                    break;
+            }
+            self.detailTextLabel.text = @"";
         }
 
-    }    
+    }
 }
 
 @end
@@ -430,12 +430,12 @@ static BOOL protocol_containsSelector(Protocol *protocol, SEL selector)
 
 - (void)deleteSections:(NSIndexSet *)sections withRowAnimation:(UITableViewRowAnimation)animation {
     NSUInteger indexCount = self.numberOfSections;
-    
+
     NSUInteger currentIndex = sections.firstIndex;
     NSInteger currentShift = 1;
     while (currentIndex != NSNotFound) {
         NSUInteger nextIndex = [sections indexGreaterThanIndex:currentIndex];
-        
+
         if (nextIndex == NSNotFound) {
             nextIndex = indexCount;
         }
@@ -475,7 +475,7 @@ static BOOL protocol_containsSelector(Protocol *protocol, SEL selector)
         //end of loading
         //for example [activityIndicator stopAnimating];
     //    NSLog(@"end loading..   ");
-    //}    
+    //}
 }
 
 
@@ -544,13 +544,13 @@ static BOOL protocol_containsSelector(Protocol *protocol, SEL selector)
                 [cell setLoading: YES];
             } else {
                 [cell setLoading: NO];
-                
+
                 if ([self.showingSectionsDictionary[key] boolValue]) {
                     [cell setExpansionStyle:UIExpansionHeaderStyleExpanded animated:NO];
                 } else {
                     [cell setExpansionStyle:UIExpansionHeaderStyleCollapsed animated:NO];
                 }
-            
+
             }
             return cell;
         } else {
