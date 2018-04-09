@@ -486,7 +486,7 @@ static BOOL protocol_containsSelector(Protocol *protocol, SEL selector)
         // section is expandable
         if (indexPath.row == 0) {
             // expand cell got clicked
-            if (![(self.downloadingSectionsDictionary)[@(section)]  isEqual: @YES] && [self.myDataSource tableView:self needsToDownloadDataForExpandableSection:indexPath.section]) {
+            if (![(self.downloadingSectionsDictionary)[indexPath.section]  isEqual: @YES] && [self.myDataSource tableView:self needsToDownloadDataForExpandableSection:indexPath.section]) {
                 // we need to download some data first
                 [self downloadDataInSection:indexPath.section];
             } else {
